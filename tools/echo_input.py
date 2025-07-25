@@ -1,3 +1,5 @@
+from utils.print_utils import info
+
 def run():
     user_input = input("Enter something to echo: ")
-    print(f"Echo: {user_input}")
+    info(f"Echo: {user_input}")

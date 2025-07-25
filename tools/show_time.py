@@ -1,4 +1,6 @@
+
 from datetime import datetime
+from utils.print_utils import info
 
 def run():
-    print(f"Current time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    info(f"Current time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
