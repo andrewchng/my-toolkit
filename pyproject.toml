@@ -1,0 +1,13 @@
+[project]
+name = "hello-world"
+version = "0.1.0"
+description = "Developer Productivity CLI Tools"
+authors = ["Your Name <your@email.com>"]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "InquirerPy"
+]
+
+[tool.uv]

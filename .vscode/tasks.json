@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Create venv with uv",
+      "command": "uv venv",
+      "group": "build"
+    }
+  ]
+}
