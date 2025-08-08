@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: my-toolkit
+Version: 0.1.0
+Summary: Developer Productivity CLI Tools
+Author-email: Your Name <andrew@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: InquirerPy
+Requires-Dist: rich
+
+# Developer Productivity CLI Tools
+
+A Python CLI tool foundation using interactPy and uv, ready for developer productivity features.
+
+## Usage
+
+- Run with: `python main.py`
+- Select options from the menu (tools coming soon)
+
+## Structure
+
+- `cli/` - CLI logic and landing page
+- `tools/` - Productivity tools (to be added)
+- `tests/` - Unit tests

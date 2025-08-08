@@ -3,7 +3,8 @@ import os
 import zipfile
 from InquirerPy import inquirer
 from glob import glob
-from utils.print_utils import info, success, error, warning
+
+from my_toolkit.utils.print_utils import error, info, success, warning
 
 def run():
     # 1. Input path

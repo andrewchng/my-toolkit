@@ -1,14 +1,12 @@
 [project]
-name = "hello-world"
+name = "my-toolkit"
 version = "0.1.0"
 description = "Developer Productivity CLI Tools"
-authors = ["Your Name <your@email.com>"]
+authors = [
+    { name = "Your Name", email = "andrew@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.8"
-
 dependencies = [
     "InquirerPy",
     "rich"
 ]
-
-[tool.uv]

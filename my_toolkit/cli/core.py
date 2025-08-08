@@ -2,10 +2,11 @@
 
 
 from InquirerPy import inquirer
-from utils.print_utils import info, success, error, warning
+
+from my_toolkit.tools import echo_input, show_time, unzip_files
+from my_toolkit.utils.print_utils import info, success
 
 def show_landing():
-    from tools import show_time, echo_input, unzip_files
     ascii_art = r"""
    ____            _                 _                 _ _         _   _           _ _     _            
   |  _ \  ___  ___| |_ ___  _ __ ___| |__   ___   ___ | (_) ___   | | | |_ __   __| (_)___| |_ ___ _ __ 
@@ -41,6 +42,7 @@ def show_landing():
             elif choice == "exit":
                 success("Goodbye!")
                 exit(0)
+            exit(0)
     except KeyboardInterrupt:
         success("Exited by user (Ctrl+C)")
         exit(0)
