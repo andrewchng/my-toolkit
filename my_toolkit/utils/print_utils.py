@@ -14,3 +14,7 @@ def error(msg):
 
 def warning(msg):
     console.print(f"[bold yellow][WARNING][/bold yellow] {escape(msg)}")
+    
+def title(msg):
+    console.print(f"[bold blue] {escape(msg)} [/bold blue]")
+

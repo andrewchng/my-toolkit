@@ -4,21 +4,22 @@
 from InquirerPy import inquirer
 
 from my_toolkit.tools import echo_input, show_time, unzip_files
-from my_toolkit.utils.print_utils import info, success
+from my_toolkit.utils.print_utils import info, success, title
+from rich.console import Console
 
 def show_landing():
     ascii_art = r"""
-   ____            _                 _                 _ _         _   _           _ _     _            
-  |  _ \  ___  ___| |_ ___  _ __ ___| |__   ___   ___ | (_) ___   | | | |_ __   __| (_)___| |_ ___ _ __ 
-  | | | |/ _ \/ __| __/ _ \| '__/ _ \ '_ \ / _ \ / _ \| | |/ _ \  | | | | '_ \ / _` | / __| __/ _ \ '__|
-  | |_| |  __/\__ \ || (_) | | |  __/ |_) | (_) | (_) | | |  __/  | |_| | |_) | (_| | \__ \ ||  __/ |   
-  |____/ \___||___/\__\___/|_|  \___|_.__/ \___/ \___/|_|_|\___|   \___/| .__/ \__,_|_|___/\__\___|_|   
-                                                                       |_|                              
+__________________________    ____________  __
+______  /__    |__  __ \_ |  / /___  _/_  |/ /
+___ _  /__  /| |_  /_/ /_ | / / __  / __    / 
+/ /_/ / _  ___ |  _, _/__ |/ / __/ /  _    |  
+\____/  /_/  |_/_/ |_| _____/  /___/  /_/|_|  
+                                                                    
 """
     version = "0.1.0"  # Sync with pyproject.toml
     try:
+        title(ascii_art)
         while True:
-            print(ascii_art)
             info(f"Version: {version}")
             choice = inquirer.select(
                 message="Choose an option: [↑/↓] Navigate  [Enter] Confirm  [Esc] Cancel",
@@ -42,7 +43,6 @@ def show_landing():
             elif choice == "exit":
                 success("Goodbye!")
                 exit(0)
-            exit(0)
     except KeyboardInterrupt:
         success("Exited by user (Ctrl+C)")
         exit(0)
