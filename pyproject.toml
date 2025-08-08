@@ -12,4 +12,8 @@ dependencies = [
     "yaspin",
     "psutil",
     "click",
+    "iterfzf",
 ]
+
+[project.scripts]
+jarvix = "my_toolkit.cli.core:show_landing"

@@ -8,7 +8,7 @@ from my_toolkit.utils.print_utils import error, info, success, warning
 
 def run():
     # 1. Input path
-    path = inquirer.text(message="Enter the directory path to search:").execute()
+    path = inquirer.text(message="Enter the directory path to search:", default=os.getcwd()).execute()
     if not os.path.isdir(path):
         error(f"Invalid directory: {path}")
         return

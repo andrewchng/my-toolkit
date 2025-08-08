@@ -1,6 +1,7 @@
 # Core CLI logic for landing page and menu
 
 
+from pathlib import Path
 from time import sleep
 from InquirerPy import inquirer
 
@@ -38,11 +39,9 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
             elif choice == "print_title":
                 with_spinner(title, ascii_art)
             elif choice == "unzip_files":
-                with_spinner(
-                    unzip_files.run()
-                )
+                unzip_files.run()
             elif choice == "fake_task":
-                with_spinner(fake_task)
+                show_time.scan_select(path=Path.cwd())
             elif choice == "exit":
                 success("Goodbye!")
                 exit(0)
