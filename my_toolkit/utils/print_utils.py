@@ -1,5 +1,7 @@
 from rich.console import Console
 from rich.markup import escape
+from yaspin import yaspin
+import time
 
 console = Console()
 
@@ -18,3 +20,23 @@ def warning(msg):
 def title(msg):
     console.print(f"[bold blue] {escape(msg)} [/bold blue]")
 
+
+def with_spinner(func, *args, **kwargs):
+    """
+    Runs a function with a yaspin spinner loader.
+    Usage:
+        with_spinner(my_func, text="Working...", color="magenta", arg1, arg2, kwarg1=val)
+    """
+    text="Loading"
+    color="cyan"
+    success_msg="✔ Done"
+    fail_msg="✗ Error"
+    try:
+        with yaspin(color=color) as spinner:
+            result = func(*args, **kwargs)
+            spinner.ok(success_msg)
+            return result
+    except Exception as e:
+        with yaspin(text=text, color="red") as spinner:
+            spinner.fail(fail_msg)
+        raise e
