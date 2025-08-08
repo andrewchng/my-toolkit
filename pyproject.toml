@@ -15,5 +15,9 @@ dependencies = [
     "iterfzf",
 ]
 
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project.scripts]
 jarvix = "my_toolkit.cli.core:show_landing"
