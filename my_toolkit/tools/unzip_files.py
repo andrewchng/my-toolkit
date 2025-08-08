@@ -4,11 +4,29 @@ import zipfile
 from InquirerPy import inquirer
 from glob import glob
 
+from pathlib import Path
+from iterfzf import iterfzf
+import yaspin
+
 from my_toolkit.utils.print_utils import error, info, success, warning
+
+paths = [
+    str(Path.home() / 'Downloads'),
+    str(Path.home() / 'Documents'),
+    str(Path.home() / 'Desktop'),
+    str(Path.home() / 'Projects'),
+    str(Path.home() / 'Resources'),
+    str(Path.home() / 'dotfiles'),
+    os.getcwd(),
+]
 
 def run():
     # 1. Input path
-    path = inquirer.text(message="Enter the directory path to search:", default=os.getcwd()).execute()
+    path = iterfzf(paths, prompt="Select path to search:")
+    if not path:
+        error("No path selected.")
+        return
+    
     if not os.path.isdir(path):
         error(f"Invalid directory: {path}")
         return

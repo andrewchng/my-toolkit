@@ -21,7 +21,7 @@ def sys():
     table.add_row("CPU Usage", f"{psutil.cpu_percent()}%")
     table.add_row("Memory", f"{psutil.virtual_memory().percent}%")
     console.print(table)
-    
+
 def scan_select(path):
     """Scan a directory and select files with fzf."""
     with yaspin(text=f"Scanning {path}...", color="cyan") as spinner:
@@ -31,4 +31,4 @@ def scan_select(path):
     if selected:
         success(f"Selected: {selected}")
     else:
-        warning("No file selected")
+        warning("No file selected") 
