@@ -5,7 +5,6 @@ from time import sleep
 from InquirerPy.prompts.list import ListPrompt
 from InquirerPy.prompts.fuzzy import FuzzyPrompt
 from InquirerPy.prompts.input import InputPrompt
-from InquirerPy.separator import Separator
 
 from my_toolkit.tools import show_time, unzip_files
 from my_toolkit.utils.cli_utils import info, success, title, with_spinner
