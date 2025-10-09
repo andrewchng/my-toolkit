@@ -1,22 +1,30 @@
+import shutil
+from pathlib import Path
+
+from iterfzf import iterfzf
 from rich.console import Console
 from rich.markup import escape
 from yaspin import yaspin
-import time
 
 console = Console()
+
 
 def info(msg):
     console.print(f"[bold cyan][INFO][/bold cyan] {escape(msg)}")
 
+
 def success(msg):
     console.print(f"[bold green][SUCCESS][/bold green] {escape(msg)}")
+
 
 def error(msg):
     console.print(f"[bold red][ERROR][/bold red] {escape(msg)}")
 
+
 def warning(msg):
     console.print(f"[bold yellow][WARNING][/bold yellow] {escape(msg)}")
-    
+
+
 def title(msg):
     console.print(f"[bold blue] {escape(msg)} [/bold blue]")
 
@@ -27,12 +35,11 @@ def with_spinner(func, *args, **kwargs):
     Usage:
         with_spinner(my_func, text="Working...", color="magenta", arg1, arg2, kwarg1=val)
     """
-    text="Loading"
-    color="cyan"
-    success_msg="✔ Done"
-    fail_msg="✗ Error"
+    text = "Loading"
+    color = "cyan"
+    success_msg = "✔ Done"
+    fail_msg = "✗ Error"
     try:
-        
         with yaspin(color=color) as spinner:
             result = func(*args, **kwargs)
             spinner.ok(success_msg)
@@ -41,6 +48,7 @@ def with_spinner(func, *args, **kwargs):
         with yaspin(text=text, color="red") as spinner:
             spinner.fail(fail_msg)
         raise e
+
 
 def scan_select(path):
     """Scan a directory and select files with fzf."""
@@ -57,7 +65,6 @@ def scan_select(path):
         preview_cmd = None  # No preview if neither bat nor cat is available
 
     if not files:
-        warning("No files to select in the current directory.")
         return
 
     selected = iterfzf(files, prompt="Jarvic Select> ", preview=preview_cmd)
