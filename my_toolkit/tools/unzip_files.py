@@ -1,12 +1,12 @@
 
 import os
 import zipfile
+from typing import Any
 from InquirerPy import inquirer
 from glob import glob
 
 from pathlib import Path
 from iterfzf import iterfzf
-import yaspin
 
 from my_toolkit.utils.print_utils import error, info, success, warning
 
@@ -31,8 +31,9 @@ def run():
         error(f"Invalid directory: {path}")
         return
 
-    # 2. Ask for recursive search
-    recursive = inquirer.confirm(message="Search recursively?", default=True).execute()
+    # 2. Ask for recursive search (use dynamic alias to satisfy type checkers)
+    inquirer_dyn: Any = inquirer
+    recursive = inquirer_dyn.confirm(message="Search recursively?", default=True).execute()
     info(f"Searching for archives in: {path} (recursive: {recursive})")
 
     # 3. Find all .zip, .war, .jar files
@@ -47,7 +48,7 @@ def run():
 
     # 4. Select files to unzip
     choices = [{"name": f, "value": f, "enabled": True} for f in found_files]
-    selected = inquirer.checkbox(
+    selected = inquirer_dyn.checkbox(
         message="Select files to unzip: [↑/↓] Navigate  [Space] Select  [Enter] Confirm  [a] Toggle all  [Esc] Cancel",
         choices=choices,
         default=[f for f in found_files]

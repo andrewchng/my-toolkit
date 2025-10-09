@@ -3,11 +3,11 @@
 
 from pathlib import Path
 from time import sleep
-from InquirerPy import inquirer
+from typing import Any
+from InquirerPy.prompts.list import ListPrompt
 
-from my_toolkit.tools import echo_input, show_time, unzip_files
+from my_toolkit.tools import show_time, unzip_files
 from my_toolkit.utils.print_utils import info, success, title, with_spinner
-from rich.console import Console
 
 def show_landing():
     ascii_art = r"""
@@ -21,9 +21,10 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
     version = "0.1.0"  # Sync with pyproject.toml
     try:
         title(ascii_art)
+        # `InquirerPy.inquirer` exposes prompts dynamically; alias as Any for type-checkers
         while True:
             info(f"Version: {version}")
-            choice = inquirer.select(
+            choice = ListPrompt(
                 message="Choose an option: [↑/↓] Navigate  [Enter] Confirm  [Esc] Cancel",
                 choices=[
                     {"name": "Show current cpu usage", "value": "show_cpu"},
@@ -32,7 +33,7 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
                     {"name": "Fake task with spinner", "value": "fake_task"},
                     {"name": "Exit", "value": "exit"},
                 ],
-                default="show_time"
+                default="show_cpu"
             ).execute()
             if choice == "show_cpu":
                 with_spinner(show_time.sys)
@@ -51,4 +52,3 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
 
 def fake_task():
     sleep(4)  # Simulate work
-

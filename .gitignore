@@ -2,7 +2,7 @@ __pycache__/
 .venv/
 *.pyc
 build/
-my_toolkiiii.egg-info/*
+my_toolkit.egg-info/*
 my_toolkit.egg-info/PKG-INFO
 my_toolkit.egg-info/requires.txt
 my_toolkit.egg-info/SOURCES.txt
