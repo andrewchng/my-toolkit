@@ -1,6 +1,5 @@
 # Core CLI logic for landing page and menu
 
-from pathlib import Path
 from time import sleep
 
 from InquirerPy.prompts.fuzzy import FuzzyPrompt
@@ -10,6 +9,7 @@ from InquirerPy.prompts.list import ListPrompt
 from my_toolkit.settings import Settings
 from my_toolkit.tools import show_time, unzip_files
 from my_toolkit.utils.cli_utils import info, success, title, with_spinner
+from my_toolkit.tools.test_tool import TestTool
 
 # Initialize settings
 settings = Settings()
@@ -32,11 +32,8 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
             choice = FuzzyPrompt(
                 message="Search and choose an option: [Type to search]  [Enter] Confirm  [Esc] Cancel",
                 choices=[
-                    {"name": "Show current cpu usage", "value": "show_cpu"},
-                    {"name": "JARVIX", "value": "print_title"},
+                    {"name": "TestTool", "value": "test_tool"},
                     {"name": "Unzip files", "value": "unzip_files"},
-                    {"name": "Fake task with spinner", "value": "fake_task"},
-                    # Separator(""),
                     {"name": "Settings", "value": "settings"},
                     {"name": "Exit", "value": "exit"},
                 ],
@@ -44,12 +41,10 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
             ).execute()
             if choice == "show_cpu":
                 with_spinner(show_time.sys)
-            elif choice == "print_title":
-                with_spinner(title, ascii_art)
             elif choice == "unzip_files":
                 unzip_files.run()
-            elif choice == "fake_task":
-                show_time.scan_select(path=Path.cwd())
+            elif choice == "test_tool":
+                TestTool().run()
             elif choice == "settings":
                 manage_settings()
             elif choice == "exit":
