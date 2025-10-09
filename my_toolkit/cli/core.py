@@ -53,16 +53,6 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
             elif choice == "settings":
                 manage_settings()
             elif choice == "exit":
-                if settings.get("general", "confirm_exit", True):
-                    confirm = ListPrompt(
-                        message="Are you sure you want to exit?",
-                        choices=[
-                            {"name": "Yes", "value": True},
-                            {"name": "No", "value": False},
-                        ],
-                    ).execute()
-                    if not confirm:
-                        continue
                 success("Goodbye!")
                 exit(0)
     except KeyboardInterrupt:
