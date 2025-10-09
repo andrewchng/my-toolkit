@@ -41,3 +41,27 @@ def with_spinner(func, *args, **kwargs):
         with yaspin(text=text, color="red") as spinner:
             spinner.fail(fail_msg)
         raise e
+
+def scan_select(path):
+    """Scan a directory and select files with fzf."""
+    with yaspin(text=f"Scanning {path}...", color="cyan") as spinner:
+        files = [str(item) for item in Path(path).iterdir() if item.is_file()]
+        spinner.ok(f"✔ Found {len(files)} files")
+
+    # Check for bat and set preview command
+    if shutil.which("bat"):
+        preview_cmd = "bat --color=always --plain {}"
+    elif shutil.which("cat"):
+        preview_cmd = "cat {}"
+    else:
+        preview_cmd = None  # No preview if neither bat nor cat is available
+
+    if not files:
+        warning("No files to select in the current directory.")
+        return
+
+    selected = iterfzf(files, prompt="Jarvic Select> ", preview=preview_cmd)
+    if selected:
+        success(f"Selected: {selected}")
+    else:
+        warning("No file selected")

@@ -3,6 +3,7 @@
 from pathlib import Path
 from time import sleep
 from InquirerPy.prompts.list import ListPrompt
+from InquirerPy.prompts.fuzzy import FuzzyPrompt
 from InquirerPy.prompts.input import InputPrompt
 from InquirerPy.separator import Separator
 
@@ -28,18 +29,18 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
     try:
         while True:
             info(f"Version: {version}")
-            choice = ListPrompt(
-                message="Choose an option: [↑/↓] Navigate  [Enter] Confirm  [Esc] Cancel",
+            choice = FuzzyPrompt(
+                message="Search and choose an option: [Type to search]  [Enter] Confirm  [Esc] Cancel",
                 choices=[
                     {"name": "Show current cpu usage", "value": "show_cpu"},
                     {"name": "JARVIX", "value": "print_title"},
                     {"name": "Unzip files", "value": "unzip_files"},
                     {"name": "Fake task with spinner", "value": "fake_task"},
-                    Separator(""),
+                    # Separator(""),
                     {"name": "Settings", "value": "settings"},
                     {"name": "Exit", "value": "exit"},
                 ],
-                default="show_cpu"
+                default=""
             ).execute()
             if choice == "show_cpu":
                 with_spinner(show_time.sys)
