@@ -4,9 +4,10 @@ from pathlib import Path
 from time import sleep
 from InquirerPy.prompts.list import ListPrompt
 from InquirerPy.prompts.input import InputPrompt
+from InquirerPy.separator import Separator
 
 from my_toolkit.tools import show_time, unzip_files
-from my_toolkit.utils.print_utils import info, success, title, with_spinner
+from my_toolkit.utils.cli_utils import info, success, title, with_spinner
 from my_toolkit.settings import Settings
 
 # Initialize settings
@@ -34,6 +35,7 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
                     {"name": "JARVIX", "value": "print_title"},
                     {"name": "Unzip files", "value": "unzip_files"},
                     {"name": "Fake task with spinner", "value": "fake_task"},
+                    Separator(""),
                     {"name": "Settings", "value": "settings"},
                     {"name": "Exit", "value": "exit"},
                 ],

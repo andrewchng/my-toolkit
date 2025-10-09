@@ -8,7 +8,7 @@ from glob import glob
 from pathlib import Path
 from iterfzf import iterfzf
 
-from my_toolkit.utils.print_utils import error, info, success, warning
+from my_toolkit.utils.cli_utils import error, info, success, warning
 
 paths = [
     str(Path.home() / 'Downloads'),

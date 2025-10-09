@@ -13,6 +13,8 @@ dependencies = [
     "psutil",
     "click",
     "iterfzf",
+    "tomli",
+    "tomli-w",
 ]
 
 [build-system]

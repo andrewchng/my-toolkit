@@ -1,5 +1,5 @@
 
-from my_toolkit.utils.print_utils import info
+from my_toolkit.utils.cli_utils import info
 
 
 def run():

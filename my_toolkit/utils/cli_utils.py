@@ -32,6 +32,7 @@ def with_spinner(func, *args, **kwargs):
     success_msg="✔ Done"
     fail_msg="✗ Error"
     try:
+        
         with yaspin(color=color) as spinner:
             result = func(*args, **kwargs)
             spinner.ok(success_msg)
