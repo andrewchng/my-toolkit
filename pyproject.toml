@@ -2,20 +2,19 @@
 name = "my-toolkit"
 version = "0.1.0"
 description = "Developer Productivity CLI Tools"
-authors = [
-    { name = "Your Name", email = "andrew@gmail.com"}]
+authors = [{ name = "Your Name", email = "andrew@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    "InquirerPy",
-    "rich",
-    "yaspin",
-    "psutil",
-    "click",
-    "iterfzf",
-    "tomli",
-    "tomli-w",
-    "requests"
+  "InquirerPy",
+  "rich",
+  "yaspin",
+  "psutil",
+  "click",
+  "iterfzf",
+  "tomli",
+  "tomli-w",
+  "PyGithub",
 ]
 
 [build-system]
