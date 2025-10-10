@@ -1,13 +1,15 @@
 # Core CLI logic for landing page and menu
 
 from time import sleep
+from types import LambdaType
+from typing import Dict
 
 from InquirerPy.prompts.fuzzy import FuzzyPrompt
 from InquirerPy.prompts.input import InputPrompt
 from InquirerPy.prompts.list import ListPrompt
 
 from my_toolkit.settings import Settings
-from my_toolkit.tools import show_time, unzip_files
+from my_toolkit.tools import base_tool, show_time, unzip_files
 from my_toolkit.tools.github import GithubTool
 from my_toolkit.utils.cli_utils import info, success, title
 from my_toolkit.tools.test_tool import TestTool
@@ -42,7 +44,7 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
                 default="",
             ).execute()
 
-            tool_map = {
+            tool_map: Dict[str, LambdaType] = {
                 "unzip_files": lambda: unzip_files.run(),
                 "test_tool": lambda: TestTool().run(),
                 "github_tool": lambda: GithubTool().run(),
