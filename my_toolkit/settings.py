@@ -5,6 +5,8 @@ from typing import Any, Dict, Optional
 import tomli
 import tomli_w
 
+from my_toolkit.utils.cli_utils import info
+
 DEFAULT_CONFIG = {
     "general": {
         "verbose": False,
@@ -14,6 +16,9 @@ DEFAULT_CONFIG = {
             "default_output_dir": "unzipped",
             "overwrite_existing": False,
         },
+        "github" : {
+            "pat_token" : ""
+        }
     },
 }
 

@@ -9,7 +9,7 @@ from InquirerPy.prompts.list import ListPrompt
 from my_toolkit.settings import Settings
 from my_toolkit.tools import show_time, unzip_files
 from my_toolkit.tools.github import GithubTool
-from my_toolkit.utils.cli_utils import info, success, title, with_spinner
+from my_toolkit.utils.cli_utils import info, success, title
 from my_toolkit.tools.test_tool import TestTool
 
 # Initialize settings

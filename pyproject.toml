@@ -15,6 +15,7 @@ dependencies = [
     "iterfzf",
     "tomli",
     "tomli-w",
+    "requests"
 ]
 
 [build-system]

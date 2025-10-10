@@ -29,7 +29,7 @@ def title(msg):
     console.print(f"[bold blue] {escape(msg)} [/bold blue]")
 
 
-def with_spinner(func, *args, **kwargs):
+def spinner(func, *args, **kwargs):
     """
     Runs a function with a yaspin spinner loader.
     Usage:
