@@ -41,7 +41,6 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
             ).execute()
 
             tool_map = {
-                "show_cpu": lambda: with_spinner(show_time.sys),
                 "unzip_files": lambda: unzip_files.run(),
                 "test_tool": lambda: TestTool().run(),
                 "settings": lambda: manage_settings(),
@@ -126,7 +125,3 @@ def manage_settings():
 
         elif choice == "back":
             break
-
-
-def fake_task():
-    sleep(4)  # Simulate work
