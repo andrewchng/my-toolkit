@@ -8,6 +8,7 @@ from InquirerPy.prompts.list import ListPrompt
 
 from my_toolkit.settings import Settings
 from my_toolkit.tools import show_time, unzip_files
+from my_toolkit.tools.github import GithubTool
 from my_toolkit.utils.cli_utils import info, success, title, with_spinner
 from my_toolkit.tools.test_tool import TestTool
 
@@ -33,6 +34,7 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
                 message="Search and choose an option: [Type to search]  [Enter] Confirm  [Esc] Cancel",
                 choices=[
                     {"name": "TestTool", "value": "test_tool"},
+                    {"name": "Github", "value": "github_tool"},
                     {"name": "Unzip files", "value": "unzip_files"},
                     {"name": "Settings", "value": "settings"},
                     {"name": "Exit", "value": "exit"},
@@ -43,6 +45,7 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
             tool_map = {
                 "unzip_files": lambda: unzip_files.run(),
                 "test_tool": lambda: TestTool().run(),
+                "github_tool": lambda: GithubTool().run(),
                 "settings": lambda: manage_settings(),
                 "exit": lambda: (success("Goodbye!"), exit(0)),
             }
