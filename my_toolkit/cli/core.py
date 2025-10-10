@@ -39,17 +39,16 @@ ___ _  /__  /| |_  /_/ /_ | / / __  / __    /
                 ],
                 default="",
             ).execute()
-            if choice == "show_cpu":
-                with_spinner(show_time.sys)
-            elif choice == "unzip_files":
-                unzip_files.run()
-            elif choice == "test_tool":
-                TestTool().run()
-            elif choice == "settings":
-                manage_settings()
-            elif choice == "exit":
-                success("Goodbye!")
-                exit(0)
+
+            tool_map = {
+                "show_cpu": lambda: with_spinner(show_time.sys),
+                "unzip_files": lambda: unzip_files.run(),
+                "test_tool": lambda: TestTool().run(),
+                "settings": lambda: manage_settings(),
+                "exit": lambda: (success("Goodbye!"), exit(0)),
+            }
+
+            tool_map.get(choice, lambda: None)()
     except KeyboardInterrupt:
         success("\nExited by user (Ctrl+C)")
         exit(0)
