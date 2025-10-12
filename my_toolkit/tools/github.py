@@ -2,7 +2,7 @@ import os
 from InquirerPy.prompts.input import InputPrompt
 from my_toolkit.settings import Settings
 from my_toolkit.tools.base_tool import Tool
-from my_toolkit.utils.cli_utils import spinner, success
+from my_toolkit.utils.cli_utils import spinner, success, info
 
 from git import Repo
 from InquirerPy.prompts.secret import SecretPrompt
@@ -78,5 +78,5 @@ class GithubTool(Tool):
     def list_repos(self):
         g = self.auth()
         for repo in g.get_user().get_repos():
-            print(repo.name)
+            info(repo.name)
         g.close()
