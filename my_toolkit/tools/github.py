@@ -1,24 +1,17 @@
 import os
 from InquirerPy.prompts.input import InputPrompt
-from yaspin import Spinner
 from my_toolkit.settings import Settings
 from my_toolkit.tools.base_tool import Tool
-from my_toolkit.utils.cli_utils import info, spinner, success
+from my_toolkit.utils.cli_utils import spinner, success
 
 from git import Repo
 from InquirerPy.prompts.secret import SecretPrompt
 from InquirerPy.prompts.fuzzy import FuzzyPrompt
 from InquirerPy.base.control import Choice
 
-
-from github import Github, Repository
-
-# Authentication is defined via github.Auth
-from github import Auth
-
+from github import Github, Auth
 
 settings = Settings()
-
 
 class GithubTool(Tool):
     name = "github"
@@ -80,7 +73,6 @@ class GithubTool(Tool):
     def auth(self) -> Github:
         auth = Auth.Token(settings.get(self.name, self.pat_key))
         g = Github(auth=auth)
-        g = Github(base_url="https://api.github.com", auth=auth)
         return g
 
     def list_repos(self):
