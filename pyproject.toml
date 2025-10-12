@@ -15,6 +15,7 @@ dependencies = [
   "tomli",
   "tomli-w",
   "PyGithub",
+  "GitPython",
 ]
 
 [build-system]

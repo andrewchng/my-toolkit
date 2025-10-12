@@ -1,14 +1,17 @@
+import os
+from InquirerPy.prompts.input import InputPrompt
+from yaspin import Spinner
 from my_toolkit.settings import Settings
 from my_toolkit.tools.base_tool import Tool
-from my_toolkit.utils.cli_utils import info, spinner
-import subprocess
+from my_toolkit.utils.cli_utils import info, spinner, success
 
+from git import Repo
 from InquirerPy.prompts.secret import SecretPrompt
 from InquirerPy.prompts.fuzzy import FuzzyPrompt
 from InquirerPy.base.control import Choice
 
 
-from github import Github
+from github import Github, Repository
 
 # Authentication is defined via github.Auth
 from github import Auth
@@ -56,21 +59,26 @@ class GithubTool(Tool):
         return {"Authorization": f"token {settings.get(self.name, self.pat_key)}"}
 
     def clone_repo(self):
-        g = self.auth()
-        repos = g.get_user().get_repos()
+        g =  self.auth()
+        repos = spinner(lambda: g.get_user().get_repos())
         g.close()
 
-        choices = [Choice(name=repo.name, value=repo.clone_url) for repo in repos]
-        selected_url = FuzzyPrompt(
+        choices = spinner(lambda: [Choice(name=repo.name, value=repo) for repo in repos])
+        selected = FuzzyPrompt(
             message="Select repo to clone:", choices=choices
         ).execute()
+        selected_url = selected.ssh_url
+        repo_name = selected.name
+        directory_to_clone = InputPrompt(
+            message="Enter path to clone to:",
+            default=os.getcwd()
+        ).execute()
+        full_path = os.path.join(directory_to_clone, repo_name)
 
-        #
-        # try:
-        #     subprocess.run(["git", "clone", selected_url], check=True)
-        #     info(f"Cloned {selected_url}")
-        # except subprocess.CalledProcessError as e:
-        #     info(f"Failed to clone: {e}")
+        spinner(
+            lambda : Repo.clone_from(selected_url, full_path)
+        )
+        success(f"{selected_url} cloned to {full_path}")
 
     def auth(self) -> Github:
         auth = Auth.Token(settings.get(self.name, self.pat_key))
@@ -82,5 +90,4 @@ class GithubTool(Tool):
         g = self.auth()
         for repo in g.get_user().get_repos():
             print(repo.name)
-
         g.close()
