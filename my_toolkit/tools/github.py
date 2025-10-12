@@ -55,9 +55,6 @@ class GithubTool(Tool):
         ).execute()
         settings.set(self.name, self.pat_key, pat_input)
 
-    def get_auth_headers(self):
-        return {"Authorization": f"token {settings.get(self.name, self.pat_key)}"}
-
     def clone_repo(self):
         g =  self.auth()
         repos = spinner(lambda: g.get_user().get_repos())
