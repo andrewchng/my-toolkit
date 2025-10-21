@@ -20,7 +20,6 @@ DEFAULT_CONFIG = {
     }
 }
 
-
 class Settings:
     def __init__(self):
         self._config: Dict[str, Any] = {}

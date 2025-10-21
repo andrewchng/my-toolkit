@@ -32,8 +32,14 @@ def title(msg):
 def spinner(func, *args, **kwargs):
     """
     Runs a function with a yaspin spinner loader.
+
+    Args:
+        func: The function to execute with the spinner
+        *args: Positional arguments to pass to func
+        **kwargs: Keyword arguments to pass to func
+
     Usage:
-        with_spinner(my_func, text="Working...", color="magenta", arg1, arg2, kwarg1=val)
+        spinner(my_func, arg1, arg2, kwarg1=val)
     """
     text = "Loading"
     color = "cyan"
