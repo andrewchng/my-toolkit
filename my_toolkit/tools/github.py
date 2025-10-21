@@ -20,7 +20,6 @@ class GithubTool(Tool):
     def run(self):
         option = FuzzyPrompt(
             choices=[
-                Choice(name="List Repos", value="list_repo"),
                 Choice(name="Clone Repo", value="clone_repo"),
                 Choice(name="Settings", value="settings"),
             ],
@@ -28,7 +27,6 @@ class GithubTool(Tool):
         ).execute()
 
         option_map = {
-            "list_repo": lambda: self.list_repos(),
             "clone_repo": lambda: self.clone_repo(),
             "settings": lambda: self.set_pat_token(),
         }
@@ -75,8 +73,3 @@ class GithubTool(Tool):
         g = Github(auth=auth)
         return g
 
-    def list_repos(self):
-        g = self.auth()
-        for repo in g.get_user().get_repos():
-            info(repo.name)
-        g.close()

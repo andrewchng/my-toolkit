@@ -11,15 +11,13 @@ DEFAULT_CONFIG = {
     "general": {
         "verbose": False,
     },
-    "tools": {
-        "unzip": {
-            "default_output_dir": "unzipped",
-            "overwrite_existing": False,
-        },
-        "github" : {
-            "pat_token" : ""
-        }
+    "unzip": {
+        "default_output_dir": "unzipped",
+        "overwrite_existing": False,
     },
+    "github" : {
+        "pat_token" : ""
+    }
 }
 
 
